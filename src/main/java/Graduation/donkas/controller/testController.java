@@ -2,6 +2,7 @@ package Graduation.donkas.controller;
 
 import Graduation.donkas.connection.Connection;
 import Graduation.donkas.dto.BookingDto;
+import Graduation.donkas.dto.PlaceDto;
 import Graduation.donkas.responseResult.ResponseResult;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -23,7 +24,7 @@ public class testController {
     @PostMapping("/test")
     public ResponseResult<?> test() throws Exception {
         Connection connection = new Connection();
-        connection.initLedger();
+        //connection.initLedger();
         JsonArray bookings = connection.GetAllBookings().getAsJsonArray();
         System.out.println(bookings);
         List<BookingDto> bookingDtos = new ArrayList<>();
@@ -33,5 +34,20 @@ public class testController {
             bookingDtos.add(bookingDto);
         }
         return ResponseResult.body(bookingDtos);
+    }
+
+    @PostMapping("/testPlace")
+    public ResponseResult<?> testPlace() throws Exception {
+        Connection connection = new Connection();
+        connection.initLedger();
+        JsonArray places = connection.GetAllPlaces().getAsJsonArray();
+        System.out.println(places);
+        List<PlaceDto> placeDtos = new ArrayList<>();
+        for(int i=0;i<places.size();++i){
+            JsonObject asset = places.get(i).getAsJsonObject();
+            PlaceDto placeDto = new PlaceDto(asset);
+            placeDtos.add(placeDto);
+        }
+        return ResponseResult.body(placeDtos);
     }
 }

@@ -1,5 +1,6 @@
 package Graduation.donkas.connection;
 
+import Graduation.donkas.dto.PlaceDto;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
@@ -145,6 +146,14 @@ public class Connection {
         return prettyJson(result);
     }
 
+    public JsonElement GetAllPlaces() throws GatewayException {
+        System.out.println("\n--> Submit Transaction: GetAllPlaces");
+
+        var result = contract.evaluateTransaction("GetAllPlaces");
+
+        return prettyJson(result);
+    }
+
     /**
      * Evaluate a transaction to query ledger state.
      */
@@ -173,6 +182,24 @@ public class Connection {
         System.out.println("\n--> Submit Transaction: CreateAsset, creates new asset with ID, Color, Size, Owner and AppraisedValue arguments");
 
         contract.submitTransaction("CreateAsset", assetId, "yellow", "5", "Tom", "1300");
+
+        System.out.println("*** Transaction committed successfully");
+    }
+
+    /*public void createPlace(PlaceDto placeDto) throws EndorseException, SubmitException, CommitStatusException, CommitException {
+        System.out.println("\n--> Submit Transaction: CreateAsset, creates new asset with ID, Color, Size, Owner and AppraisedValue arguments");
+        String[] dateList = new String[5];
+        contract.submitTransaction("CreatePlace", placeDto.getPlaceID(), placeDto.getHostID(), placeDto.getAddress(),
+                String.valueOf(placeDto.getLocation()), dateList,String.valueOf(placeDto.isBookingAvailable()),String.valueOf(placeDto.getRating()),
+               String.valueOf(placeDto.getBusinessNumber()));
+
+        System.out.println("*** Transaction committed successfully");
+    }*/
+
+    public void createBooking() throws EndorseException, SubmitException, CommitStatusException, CommitException {
+        System.out.println("\n--> Submit Transaction: CreateAsset, creates new asset with ID, Color, Size, Owner and AppraisedValue arguments");
+        contract.submitTransaction("CreateBooking","b4", "placeId", "hostId", "guestId",
+                "10000", "checkInDate", "checkOutDate", "bookingStatus");
 
         System.out.println("*** Transaction committed successfully");
     }

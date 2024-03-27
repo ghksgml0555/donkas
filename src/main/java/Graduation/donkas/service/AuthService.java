@@ -37,6 +37,7 @@ public class AuthService {
             throw new RuntimeException("이미 가입되어 있는 유저(이메일)입니다");
         }
         Member member = memberRequestDto.toMember(passwordEncoder);
+
         return MemberResponseDto.of(memberRepository.save(member));
     }
 
