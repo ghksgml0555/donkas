@@ -24,7 +24,7 @@ public class testController {
     @PostMapping("/test")
     public ResponseResult<?> test() throws Exception {
         Connection connection = new Connection();
-        //connection.initLedger();
+        connection.initLedger();
         JsonArray bookings = connection.GetAllBookings().getAsJsonArray();
         System.out.println(bookings);
         List<BookingDto> bookingDtos = new ArrayList<>();

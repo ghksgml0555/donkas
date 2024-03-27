@@ -13,7 +13,7 @@ public class PlaceService {
 
     public boolean registration() throws Exception {
         Connection connection = new Connection();
-        connection.createBooking();
+        //connection.createBooking();
         return true;
     }
 }

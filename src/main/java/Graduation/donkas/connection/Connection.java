@@ -1,5 +1,6 @@
 package Graduation.donkas.connection;
 
+import Graduation.donkas.dto.BookingDto;
 import Graduation.donkas.dto.PlaceDto;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -196,10 +197,10 @@ public class Connection {
         System.out.println("*** Transaction committed successfully");
     }*/
 
-    public void createBooking() throws EndorseException, SubmitException, CommitStatusException, CommitException {
+    public void createBooking(BookingDto bookingDto) throws EndorseException, SubmitException, CommitStatusException, CommitException {
         System.out.println("\n--> Submit Transaction: CreateAsset, creates new asset with ID, Color, Size, Owner and AppraisedValue arguments");
-        contract.submitTransaction("CreateBooking","b4", "placeId", "hostId", "guestId",
-                "10000", "checkInDate", "checkOutDate", "bookingStatus");
+        contract.submitTransaction("CreateBooking",bookingDto.getBookingID(), bookingDto.getPlaceID(), bookingDto.getHostID(), bookingDto.getGuestID(),
+                bookingDto.getBookingPrice(), bookingDto.getCheckinDate(), bookingDto.getCheckoutDate(), bookingDto.getBookingStatus());
 
         System.out.println("*** Transaction committed successfully");
     }
@@ -232,6 +233,7 @@ public class Connection {
 
         System.out.println("*** Transaction committed successfully");
     }
+
 
     private void readAssetById() throws GatewayException {
         System.out.println("\n--> Evaluate Transaction: ReadAsset, function returns asset attributes");
@@ -273,6 +275,9 @@ public class Connection {
         }
     }
 
+    public void accept(BookingDto bookingDto) throws Exception {
+        contract.submitTransaction("UpdateBookingStatus",bookingDto.getBookingID(), bookingDto.getHostID(),"수락");
+    }
 
 
 }
