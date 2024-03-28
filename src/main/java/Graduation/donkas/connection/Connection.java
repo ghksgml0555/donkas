@@ -243,6 +243,7 @@ public class Connection {
         System.out.println("*** Result:" + prettyJson(evaluateResult));
     }
 
+
     /**
      * submitTransaction() will throw an error containing details of any error
      * responses from the smart contract.
