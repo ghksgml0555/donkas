@@ -1,5 +1,6 @@
 package Graduation.donkas.service;
 
+import Graduation.donkas.connection.Connection;
 import Graduation.donkas.domain.member.Member;
 import Graduation.donkas.domain.member.RefreshToken;
 import Graduation.donkas.dto.LoginDto;
@@ -32,13 +33,15 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
 
     @Transactional
-    public MemberResponseDto signup(MemberRequestDto memberRequestDto) {
+    public MemberResponseDto signup(MemberRequestDto memberRequestDto) throws Exception {
         if (memberRepository.existsByEmail(memberRequestDto.getEmail())) {
             throw new RuntimeException("이미 가입되어 있는 유저(이메일)입니다");
         }
         Member member = memberRequestDto.toMember(passwordEncoder);
-
-        return MemberResponseDto.of(memberRepository.save(member));
+        memberRepository.save(member);
+        Connection connection = new Connection();
+        connection.createWallet(String.valueOf(member.getId())); //지갑생성시 100000원 기본충전
+        return MemberResponseDto.of(member);
     }
 
     @Transactional

@@ -155,6 +155,14 @@ public class Connection {
         return prettyJson(result);
     }
 
+    public JsonElement GetAllWallets() throws GatewayException {
+        System.out.println("\n--> Submit Transaction: GetAllWallets");
+
+        var result = contract.evaluateTransaction("GetAllWallets");
+
+        return prettyJson(result);
+    }
+
     /**
      * Evaluate a transaction to query ledger state.
      */
@@ -187,15 +195,13 @@ public class Connection {
         System.out.println("*** Transaction committed successfully");
     }
 
-    /*public void createPlace(PlaceDto placeDto) throws EndorseException, SubmitException, CommitStatusException, CommitException {
+    public void createPlace(PlaceDto placeDto) throws EndorseException, SubmitException, CommitStatusException, CommitException {
         System.out.println("\n--> Submit Transaction: CreateAsset, creates new asset with ID, Color, Size, Owner and AppraisedValue arguments");
-        String[] dateList = new String[5];
         contract.submitTransaction("CreatePlace", placeDto.getPlaceID(), placeDto.getHostID(), placeDto.getAddress(),
-                String.valueOf(placeDto.getLocation()), dateList,String.valueOf(placeDto.isBookingAvailable()),String.valueOf(placeDto.getRating()),
-               String.valueOf(placeDto.getBusinessNumber()));
+                placeDto.getLocation(),placeDto.getBookingAvailable(),placeDto.getRating(), placeDto.getBusinessNumber());
 
         System.out.println("*** Transaction committed successfully");
-    }*/
+    }
 
     public void createBooking(BookingDto bookingDto) throws EndorseException, SubmitException, CommitStatusException, CommitException {
         System.out.println("\n--> Submit Transaction: CreateAsset, creates new asset with ID, Color, Size, Owner and AppraisedValue arguments");
@@ -204,6 +210,14 @@ public class Connection {
 
         System.out.println("*** Transaction committed successfully");
     }
+
+    public void createWallet(String id) throws EndorseException, CommitException, SubmitException, CommitStatusException {
+        System.out.println("\n--> Submit Transaction: CreateWallet");
+        contract.submitTransaction("CreateWallet", id);
+        System.out.println("*** Transaction committed successfully");
+
+    }
+
 
     /**
      * Submit transaction asynchronously, allowing the application to process the
@@ -279,6 +293,12 @@ public class Connection {
     public void accept(BookingDto bookingDto) throws Exception {
         contract.submitTransaction("UpdateBookingStatus",bookingDto.getBookingID(), bookingDto.getHostID(),"수락");
     }
+
+    public void TransferMoney(String senderId, String receiverId,int amount) throws Exception{
+        contract.submitTransaction("TransferMoney", senderId, receiverId, String.valueOf(amount));
+    }
+
+
 
 
 }
