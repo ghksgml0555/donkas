@@ -19,7 +19,7 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/signup")
-    public ResponseResult<?> signup(@RequestBody MemberRequestDto memberRequestDto) {
+    public ResponseResult<?> signup(@RequestBody MemberRequestDto memberRequestDto) throws Exception {
 
         return ResponseResult.body(authService.signup(memberRequestDto));
     }
