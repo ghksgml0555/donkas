@@ -1,4 +1,4 @@
-package Graduation.donkas.dto;
+package Graduation.donkas.dto.MemberDto;
 
 import Graduation.donkas.domain.member.Authority;
 import Graduation.donkas.domain.member.Member;

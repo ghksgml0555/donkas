@@ -1,14 +1,16 @@
-package Graduation.donkas.dto;
+package Graduation.donkas.dto.PlaceDto;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class PlaceDto {
 
     String placeID;
@@ -28,4 +30,6 @@ public class PlaceDto {
         this.rating = asset.get("rating").getAsString();
         this.businessNumber = asset.get("businessNumber").getAsString();
     }
+
+
 }

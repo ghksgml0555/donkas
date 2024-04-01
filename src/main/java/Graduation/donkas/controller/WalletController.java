@@ -1,6 +1,5 @@
 package Graduation.donkas.controller;
 
-import Graduation.donkas.dto.PlaceDto;
 import Graduation.donkas.responseResult.ResponseResult;
 import Graduation.donkas.service.WalletService;
 import lombok.RequiredArgsConstructor;
@@ -8,7 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

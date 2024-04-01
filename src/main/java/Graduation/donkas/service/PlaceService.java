@@ -1,14 +1,11 @@
 package Graduation.donkas.service;
 
 import Graduation.donkas.connection.Connection;
-import Graduation.donkas.dto.BookingDto;
-import Graduation.donkas.dto.PlaceDto;
-import Graduation.donkas.responseResult.ResponseResult;
+import Graduation.donkas.dto.PlaceDto.PlaceDto;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -44,6 +44,10 @@ dependencies {
 	compileOnly 'io.grpc:grpc-api:1.59.0'
 	runtimeOnly 'io.grpc:grpc-netty-shaded:1.59.0'
 	implementation 'com.google.code.gson:gson:2.10.1'
+
+	implementation 'org.apache.commons:commons-lang3:3.0'
+
+
 }
 
 tasks.named('test') {

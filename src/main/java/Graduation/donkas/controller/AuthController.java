@@ -2,8 +2,7 @@ package Graduation.donkas.controller;
 
 
 import Graduation.donkas.dto.LoginDto;
-import Graduation.donkas.dto.MemberRequestDto;
-import Graduation.donkas.repository.MemberRepository;
+import Graduation.donkas.dto.MemberDto.MemberRequestDto;
 import Graduation.donkas.responseResult.ResponseResult;
 import Graduation.donkas.service.AuthService;
 import lombok.RequiredArgsConstructor;

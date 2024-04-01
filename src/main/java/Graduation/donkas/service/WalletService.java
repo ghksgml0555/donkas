@@ -1,10 +1,7 @@
 package Graduation.donkas.service;
 
 import Graduation.donkas.connection.Connection;
-import Graduation.donkas.dto.BookingDto;
-import Graduation.donkas.dto.PlaceDto;
 import Graduation.donkas.dto.WalletDto;
-import Graduation.donkas.responseResult.ResponseResult;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import lombok.RequiredArgsConstructor;
