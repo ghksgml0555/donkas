@@ -1,7 +1,7 @@
 package Graduation.donkas.controller;
 
 import Graduation.donkas.connection.Connection;
-import Graduation.donkas.dto.BookingDto;
+import Graduation.donkas.dto.BookingDto.BookingDto;
 import Graduation.donkas.dto.PlaceDto.PlaceDto;
 import Graduation.donkas.responseResult.ResponseResult;
 import com.google.gson.JsonArray;

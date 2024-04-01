@@ -1,6 +1,6 @@
 package Graduation.donkas.connection;
 
-import Graduation.donkas.dto.BookingDto;
+import Graduation.donkas.dto.BookingDto.BookingDto;
 import Graduation.donkas.dto.PlaceDto.PlaceDto;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

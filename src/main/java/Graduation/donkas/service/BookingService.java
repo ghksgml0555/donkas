@@ -1,11 +1,10 @@
 package Graduation.donkas.service;
 
 import Graduation.donkas.connection.Connection;
-import Graduation.donkas.dto.BookingDto;
+import Graduation.donkas.dto.BookingDto.BookingDto;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import lombok.RequiredArgsConstructor;
-import org.checkerframework.checker.units.qual.C;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

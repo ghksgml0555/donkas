@@ -1,9 +1,9 @@
 package Graduation.donkas.controller;
 
-import Graduation.donkas.dto.BookingDto;
+import Graduation.donkas.dto.BookingDto.BookingDto;
+import Graduation.donkas.dto.BookingDto.BookingRequestDto;
 import Graduation.donkas.dto.PlaceDto.PlaceDto;
 import Graduation.donkas.dto.PlaceDto.PlaceRequestDto;
-import Graduation.donkas.dto.SearchDto;
 import Graduation.donkas.responseResult.ResponseResult;
 import Graduation.donkas.service.BookingService;
 import Graduation.donkas.service.PlaceService;
@@ -24,10 +24,10 @@ public class PlaceController {
     private final PlaceService placeService;
     private final BookingService bookingService;
 
-    @PostMapping("/search")
+    /*@PostMapping("/search")
     public ResponseResult<?> search(@RequestBody SearchDto searchDto) throws Exception {
-        
-    }
+        개발중
+    }*/
 
     @PostMapping("/registration")
     public ResponseResult<?> registration(@RequestBody PlaceRequestDto placeRequestDto,@AuthenticationPrincipal UserDetails user) throws Exception {
@@ -36,8 +36,9 @@ public class PlaceController {
     }
 
     @PostMapping("/LeaseRequest")
-    public ResponseResult<?> LeaseRequest(@RequestBody BookingDto bookingDto) throws Exception {
+    public ResponseResult<?> LeaseRequest(@RequestBody BookingRequestDto bookingRequestDto, @AuthenticationPrincipal UserDetails user) throws Exception {
         //bookingStatus = 예약신청
+        BookingDto bookingDto = bookingRequestDto.toBookingDto(user.getUsername());
         return ResponseResult.body(bookingService.LeaseRequest(bookingDto));
     }
 

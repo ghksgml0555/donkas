@@ -1,13 +1,15 @@
-package Graduation.donkas.dto;
+package Graduation.donkas.dto.BookingDto;
 
 import com.google.gson.JsonObject;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class BookingDto {
     String bookingID;
     String placeID;
