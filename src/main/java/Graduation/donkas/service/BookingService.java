@@ -27,6 +27,18 @@ public class BookingService {
         return true;
     }
 
+    public boolean refuse(BookingDto bookingDto) throws Exception {
+        Connection connection = new Connection();
+        connection.refuse(bookingDto);
+        return true;
+    }
+
+    public boolean cancel(BookingDto bookingDto) throws Exception {
+        Connection connection = new Connection();
+        connection.cancel(bookingDto);
+        return true;
+    }
+
     public List<BookingDto> myLease(String id) throws Exception {
         Connection connection = new Connection();
         JsonArray bookings = connection.GetAllBookings().getAsJsonArray();

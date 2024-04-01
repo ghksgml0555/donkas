@@ -1,7 +1,7 @@
 package Graduation.donkas.connection;
 
 import Graduation.donkas.dto.BookingDto;
-import Graduation.donkas.dto.PlaceDto;
+import Graduation.donkas.dto.PlaceDto.PlaceDto;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
@@ -291,7 +291,18 @@ public class Connection {
     }
 
     public void accept(BookingDto bookingDto) throws Exception {
-        contract.submitTransaction("UpdateBookingStatus",bookingDto.getBookingID(), bookingDto.getHostID(),"수락");
+        contract.submitTransaction("UpdateBookingStatus",bookingDto.getBookingID(),
+                bookingDto.getHostID(),"예약승인");
+    }
+
+    public void refuse(BookingDto bookingDto) throws Exception {
+        contract.submitTransaction("UpdateBookingStatus",bookingDto.getBookingID(),
+                bookingDto.getHostID(),"예약거절");
+    }
+
+    public void cancel(BookingDto bookingDto) throws Exception {
+        contract.submitTransaction("UpdateBookingStatus",bookingDto.getBookingID(),
+                bookingDto.getHostID(),"예약취소");
     }
 
     public void TransferMoney(String senderId, String receiverId,int amount) throws Exception{

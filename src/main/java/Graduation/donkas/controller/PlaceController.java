@@ -1,10 +1,10 @@
 package Graduation.donkas.controller;
 
 import Graduation.donkas.dto.BookingDto;
-import Graduation.donkas.dto.MemberRequestDto;
-import Graduation.donkas.dto.PlaceDto;
+import Graduation.donkas.dto.PlaceDto.PlaceDto;
+import Graduation.donkas.dto.PlaceDto.PlaceRequestDto;
+import Graduation.donkas.dto.SearchDto;
 import Graduation.donkas.responseResult.ResponseResult;
-import Graduation.donkas.service.AuthService;
 import Graduation.donkas.service.BookingService;
 import Graduation.donkas.service.PlaceService;
 import lombok.RequiredArgsConstructor;
@@ -24,23 +24,42 @@ public class PlaceController {
     private final PlaceService placeService;
     private final BookingService bookingService;
 
-    @PostMapping("/registration")
-    public ResponseResult<?> registration(@RequestBody PlaceDto placeDto) throws Exception {
+    @PostMapping("/search")
+    public ResponseResult<?> search(@RequestBody SearchDto searchDto) throws Exception {
+        
+    }
 
+    @PostMapping("/registration")
+    public ResponseResult<?> registration(@RequestBody PlaceRequestDto placeRequestDto,@AuthenticationPrincipal UserDetails user) throws Exception {
+        PlaceDto placeDto = placeRequestDto.toPlaceDto(user.getUsername());
         return ResponseResult.body(placeService.registration(placeDto));
     }
 
     @PostMapping("/LeaseRequest")
     public ResponseResult<?> LeaseRequest(@RequestBody BookingDto bookingDto) throws Exception {
-        //bookingStatus = 대여신청
+        //bookingStatus = 예약신청
         return ResponseResult.body(bookingService.LeaseRequest(bookingDto));
     }
 
     @PostMapping("/accept")
     public ResponseResult<?> accept(@RequestBody BookingDto bookingDto) throws Exception {
-        //bookingStatus = 수락
+        //bookingStatus = 예약승인
 
         return ResponseResult.body(bookingService.accept(bookingDto));
+    }
+
+    @PostMapping("/refuse")
+    public ResponseResult<?> refuse(@RequestBody BookingDto bookingDto) throws Exception {
+        //bookingStatus = 예약거절
+
+        return ResponseResult.body(bookingService.refuse(bookingDto));
+    }
+
+    @PostMapping("/cancel")
+    public ResponseResult<?> cancel(@RequestBody BookingDto bookingDto) throws Exception {
+        //bookingStatus = 예약취소
+
+        return ResponseResult.body(bookingService.cancel(bookingDto));
     }
 
     @PostMapping("/myLease")

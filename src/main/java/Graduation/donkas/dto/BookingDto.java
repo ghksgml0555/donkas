@@ -16,6 +16,8 @@ public class BookingDto {
     String bookingPrice;
     String checkinDate;
     String checkoutDate;
+
+    //예약신청, 예약승인, 예약거절, 예약취소
     String bookingStatus;
 
     public BookingDto(JsonObject asset){
