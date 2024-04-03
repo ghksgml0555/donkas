@@ -17,12 +17,8 @@ import java.util.Calendar;
 @NoArgsConstructor
 public class PlaceRequestDto {
 
-    String hostID;
     String address;
-    String location;
-    String bookingAvailable;
-    String rating;
-    String businessNumber;
+    String bookingPrice;
 
     public PlaceDto toPlaceDto(String id) {
 
@@ -35,12 +31,13 @@ public class PlaceRequestDto {
 
         return PlaceDto.builder()
                 .placeID(uniqueId)
-                .hostID(hostID)
+                .hostID(id)
                 .address(address)
-                .location(location)
-                .bookingAvailable(bookingAvailable)
-                .rating(rating)
-                .businessNumber(businessNumber)
+                .location("00")
+                .bookingAvailable("true")
+                .rating("0.0")
+                .businessNumber("businessNumber")
+                .bookingPrice(bookingPrice)
                 .build();
     }
 }

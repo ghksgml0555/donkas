@@ -1,6 +1,7 @@
 package Graduation.donkas.service;
 
 import Graduation.donkas.connection.Connection;
+import Graduation.donkas.dto.BookingDto.BookingDto;
 import Graduation.donkas.dto.PlaceDto.PlaceDto;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -33,4 +34,30 @@ public class PlaceService {
         }
         return placeDtos;
     }
+
+    public PlaceDto GetPlaceById(String placeId) throws Exception {
+        Connection connection = new Connection();
+        JsonArray places = connection.GetPlaceById(placeId).getAsJsonArray();
+        PlaceDto placeDto = new PlaceDto();
+        for(int i=0;i<places.size();++i){
+            JsonObject asset = places.get(i).getAsJsonObject();
+            placeDto = new PlaceDto(asset);
+        }
+        return placeDto;
+    }
+
+    public List<PlaceDto> searchByAddress(String address) throws Exception {
+        Connection connection = new Connection();
+        JsonArray places = connection.GetAllPlaces().getAsJsonArray();
+        List<PlaceDto> placeDtos = new ArrayList<>();
+        for(int i=0;i<places.size();++i){
+            JsonObject asset = places.get(i).getAsJsonObject();
+            PlaceDto placeDto = new PlaceDto(asset);
+            if(placeDto.getAddress().equals(address)){
+                placeDtos.add(placeDto);
+            }
+        }
+        return placeDtos;
+    }
+
 }

@@ -15,7 +15,6 @@ public class BookingDto {
     String placeID;
     String hostID;
     String guestID;
-    String bookingPrice;
     String checkinDate;
     String checkoutDate;
 
@@ -27,7 +26,6 @@ public class BookingDto {
         this.placeID = asset.get("placeID").getAsString();
         this.hostID = asset.get("hostID").getAsString();
         this.guestID = asset.get("guestID").getAsString();
-        this.bookingPrice = asset.get("bookingPrice").getAsString();
         this.checkinDate = asset.get("checkinDate").getAsString();
         this.checkoutDate = asset.get("checkoutDate").getAsString();
         this.bookingStatus = asset.get("bookingStatus").getAsString();

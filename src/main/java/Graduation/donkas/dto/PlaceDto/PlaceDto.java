@@ -20,6 +20,7 @@ public class PlaceDto {
     String bookingAvailable;
     String rating;
     String businessNumber;
+    String bookingPrice;
 
     public PlaceDto(JsonObject asset){
         this.placeID = asset.get("placeID").getAsString();
@@ -29,6 +30,7 @@ public class PlaceDto {
         this.bookingAvailable = asset.get("bookingAvailable").getAsString();
         this.rating = asset.get("rating").getAsString();
         this.businessNumber = asset.get("businessNumber").getAsString();
+        this.bookingPrice = asset.get("bookingPrice").getAsString();
     }
 
 

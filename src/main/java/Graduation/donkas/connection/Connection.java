@@ -40,7 +40,7 @@ public class Connection {
     private static final String CHAINCODE_NAME = System.getenv().getOrDefault("CHAINCODE_NAME", "bookingCC");
 
     // Path to crypto materials.
-    private static final Path CRYPTO_PATH = Paths.get("C:\\Users\\ghksg\\Desktop\\박환희\\졸업\\peerOrganizations\\org1.example.com");
+    private static final Path CRYPTO_PATH = Paths.get("C:\\Windows\\System32\\testblockchain4\\newNetwork\\fabric-samples\\test-network\\organizations\\peerOrganizations\\org1.example.com");
     //private static final Path CRYPTO_PATH = Paths.get("../../test-network/organizations/peerOrganizations/org1.example.com");
     // Path to user certificate.
     private static final Path CERT_DIR_PATH = CRYPTO_PATH.resolve(Paths.get("users/User1@org1.example.com/msp/signcerts"));
@@ -163,6 +163,22 @@ public class Connection {
         return prettyJson(result);
     }
 
+    public JsonElement GetBookingById(String bookingId) throws GatewayException {
+        System.out.println("\n--> Submit Transaction: GetBookingById");
+
+        var result = contract.evaluateTransaction("GetBookingById", bookingId);
+
+        return prettyJson(result);
+    }
+
+    public JsonElement GetPlaceById(String placeId) throws GatewayException {
+        System.out.println("\n--> Submit Transaction: GetPlaceById");
+
+        var result = contract.evaluateTransaction("GetPlaceById", placeId);
+
+        return prettyJson(result);
+    }
+
     /**
      * Evaluate a transaction to query ledger state.
      */
@@ -173,6 +189,8 @@ public class Connection {
 
         System.out.println("*** Result: " + prettyJson(result));
     }
+
+
 
     private JsonElement prettyJson(final byte[] json) {
         return prettyJson(new String(json, StandardCharsets.UTF_8));
@@ -198,7 +216,7 @@ public class Connection {
     public void createPlace(PlaceDto placeDto) throws EndorseException, SubmitException, CommitStatusException, CommitException {
         System.out.println("\n--> Submit Transaction: CreateAsset, creates new asset with ID, Color, Size, Owner and AppraisedValue arguments");
         contract.submitTransaction("CreatePlace", placeDto.getPlaceID(), placeDto.getHostID(), placeDto.getAddress(),
-                placeDto.getLocation(),placeDto.getBookingAvailable(),placeDto.getRating(), placeDto.getBusinessNumber());
+                placeDto.getLocation(),placeDto.getBookingAvailable(),placeDto.getBookingPrice(),placeDto.getRating(), placeDto.getBusinessNumber());
 
         System.out.println("*** Transaction committed successfully");
     }
@@ -206,7 +224,7 @@ public class Connection {
     public void createBooking(BookingDto bookingDto) throws EndorseException, SubmitException, CommitStatusException, CommitException {
         System.out.println("\n--> Submit Transaction: CreateAsset, creates new asset with ID, Color, Size, Owner and AppraisedValue arguments");
         contract.submitTransaction("CreateBooking",bookingDto.getBookingID(), bookingDto.getPlaceID(), bookingDto.getHostID(), bookingDto.getGuestID(),
-                bookingDto.getBookingPrice(), bookingDto.getCheckinDate(), bookingDto.getCheckoutDate(), bookingDto.getBookingStatus());
+                bookingDto.getCheckinDate(), bookingDto.getCheckoutDate(), bookingDto.getBookingStatus());
 
         System.out.println("*** Transaction committed successfully");
     }

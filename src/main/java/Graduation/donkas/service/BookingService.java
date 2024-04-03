@@ -51,5 +51,28 @@ public class BookingService {
         }
         return bookingDtos;
     }
+    public List<BookingDto> myPlaceLeaseRequestList(String id) throws Exception {
+        Connection connection = new Connection();
+        JsonArray bookings = connection.GetAllBookings().getAsJsonArray();
+        List<BookingDto> bookingDtos = new ArrayList<>();
+        for(int i=0;i<bookings.size();++i){
+            JsonObject asset = bookings.get(i).getAsJsonObject();
+            BookingDto bookingDto = new BookingDto(asset);
+            if(bookingDto.getHostID().equals(id) && bookingDto.getBookingStatus().equals("예약신청")){
+                bookingDtos.add(bookingDto);
+            }
+        }
+        return bookingDtos;
+    }
 
+    public BookingDto GetBookingById(String bookingId) throws Exception {
+        Connection connection = new Connection();
+        JsonArray bookings = connection.GetBookingById(bookingId).getAsJsonArray();
+        BookingDto bookingDto = new BookingDto();
+        for(int i=0;i<bookings.size();++i){
+            JsonObject asset = bookings.get(i).getAsJsonObject();
+            bookingDto = new BookingDto(asset);
+        }
+        return bookingDto;
+    }
 }

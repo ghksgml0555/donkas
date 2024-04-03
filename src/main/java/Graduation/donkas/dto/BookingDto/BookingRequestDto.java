@@ -17,14 +17,8 @@ public class BookingRequestDto {
 
     String placeID;
     String hostID;
-    String guestID;
-    String bookingPrice;
     String checkinDate;
     String checkoutDate;
-
-    //예약신청, 예약승인, 예약거절, 예약취소
-    String bookingStatus;
-
 
     public BookingDto toBookingDto(String id) {
 
@@ -39,11 +33,10 @@ public class BookingRequestDto {
                 .bookingID(uniqueId)
                 .placeID(placeID)
                 .hostID(hostID)
-                .guestID(guestID)
-                .bookingPrice(bookingPrice)
+                .guestID(id)
                 .checkinDate(checkinDate)
                 .checkoutDate(checkoutDate)
-                .bookingStatus(bookingStatus)
+                .bookingStatus("예약신청")
                 .build();
     }
 }
