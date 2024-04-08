@@ -21,6 +21,8 @@ public class MemberRequestDto {
     private String name;
     @NotBlank(message = "전화번호는 필수 입력 값입니다.")
     private String telNo;
+    @NotBlank(message = "신분 구분은 필수 입력 값입니다.")
+    private Authority authority;
 
     public Member toMember(PasswordEncoder passwordEncoder) {
         return Member.builder()
@@ -28,7 +30,7 @@ public class MemberRequestDto {
                 .password(passwordEncoder.encode(password))
                 .name(name)
                 .telNo(telNo)
-                .authority(Authority.ROLE_LANDLORD)
+                .authority(authority)
                 .build();
     }
 }

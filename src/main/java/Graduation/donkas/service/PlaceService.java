@@ -35,7 +35,7 @@ public class PlaceService {
         return placeDtos;
     }
 
-    public PlaceDto GetPlaceById(String placeId) throws Exception {
+    /*public PlaceDto GetPlaceById(String placeId) throws Exception {
         Connection connection = new Connection();
         JsonArray places = connection.GetPlaceById(placeId).getAsJsonArray();
         PlaceDto placeDto = new PlaceDto();
@@ -44,6 +44,21 @@ public class PlaceService {
             placeDto = new PlaceDto(asset);
         }
         return placeDto;
+    }*/
+
+    public PlaceDto GetPlaceById(String placeId) throws Exception {
+        Connection connection = new Connection();
+        JsonArray places = connection.GetAllPlaces().getAsJsonArray();
+        PlaceDto returnPlaceDto = new PlaceDto();
+        for(int i=0;i<places.size();++i){
+            JsonObject asset = places.get(i).getAsJsonObject();
+            PlaceDto placeDto = new PlaceDto(asset);
+            if(placeDto.getPlaceID().equals(placeId)){
+                returnPlaceDto =placeDto;
+                break;
+            }
+        }
+        return returnPlaceDto;
     }
 
     public List<PlaceDto> searchByAddress(String address) throws Exception {

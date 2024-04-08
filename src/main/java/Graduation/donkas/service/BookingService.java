@@ -65,7 +65,7 @@ public class BookingService {
         return bookingDtos;
     }
 
-    public BookingDto GetBookingById(String bookingId) throws Exception {
+    /*public BookingDto GetBookingById(String bookingId) throws Exception {
         Connection connection = new Connection();
         JsonArray bookings = connection.GetBookingById(bookingId).getAsJsonArray();
         BookingDto bookingDto = new BookingDto();
@@ -74,5 +74,19 @@ public class BookingService {
             bookingDto = new BookingDto(asset);
         }
         return bookingDto;
+    }*/
+
+    public BookingDto GetBookingById(String bookingId) throws Exception {
+        Connection connection = new Connection();
+        JsonArray bookings = connection.GetAllBookings().getAsJsonArray();
+        BookingDto returnBookingDto = new BookingDto();
+        for(int i=0;i<bookings.size();++i){
+            JsonObject asset = bookings.get(i).getAsJsonObject();
+            BookingDto bookingDto = new BookingDto(asset);
+            if(bookingDto.getBookingID().equals(bookingId)){
+                returnBookingDto =new BookingDto(asset);
+            }
+        }
+        return returnBookingDto;
     }
 }
