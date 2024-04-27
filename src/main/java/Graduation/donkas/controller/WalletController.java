@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,14 +21,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class WalletController {
     private final WalletService walletService;
 
-    @PostMapping("/getAllWallet")
+    @GetMapping("/getAllWallet")
     @Operation(summary = "모든 지갑 내용을 확인")
     public ResponseResult<?> getAllWallet() throws Exception {
 
         return ResponseResult.body(walletService.getAllWallet());
     }
 
-    @PostMapping("/myWallet")
+    @GetMapping("/myWallet")
     @Operation(summary = "로그인 된 사용자의 지갑 내용 확인")
     public ResponseResult<?> myWallet(@AuthenticationPrincipal UserDetails user) throws Exception {
         log.info(user.getUsername()); //로그인한 member의 id
