@@ -30,7 +30,7 @@ public class PlaceController {
     private final WalletService walletService;
     private final DateService dateService;
 
-    @PostMapping("/search")
+    @GetMapping("/search")
     @Operation(summary = "지역으로 검색")
     public ResponseResult<?> search(@RequestParam String address) throws Exception {
         return ResponseResult.body(placeService.searchByAddress(address));
@@ -83,21 +83,21 @@ public class PlaceController {
         return ResponseResult.body(bookingService.cancel(bookingDto));
     }
 
-    @PostMapping("/myLease")
+    @GetMapping("/myLease")
     @Operation(summary = "내가 예약한 정보 확인", description = "내가 예약했던 목록들을 볼 수 있다")
     public ResponseResult<?> myLease(@AuthenticationPrincipal UserDetails user) throws Exception {
         log.info(user.getUsername()); //로그인한 member의 id
         return ResponseResult.body(bookingService.myLease(user.getUsername()));
     }
 
-    @PostMapping("/myPlace")
+    @GetMapping("/myPlace")
     @Operation(summary = "내가 올린 숙소 확인", description = "집주인이 자기가 등록한 숙소들을 확인할 수 있다.")
     public ResponseResult<?> myPlace(@AuthenticationPrincipal UserDetails user) throws Exception {
         log.info(user.getUsername()); //로그인한 member의 id
         return ResponseResult.body(placeService.myPlace(user.getUsername()));
     }
 
-    @PostMapping("/myPlaceLeaseRequestList")
+    @GetMapping("/myPlaceLeaseRequestList")
     @Operation(summary = "내 숙소목록중 숙박 신청이 들어온 숙소 확인")
     public ResponseResult<?> myPlaceLeaseRequestList(@AuthenticationPrincipal UserDetails user) throws Exception {
         log.info(user.getUsername()); //로그인한 member의 id
