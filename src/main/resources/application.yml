@@ -17,6 +17,8 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
+  config:
+    import: classpath:/application-secret.yml
 jwt:
   #HS512 ????? ??? ??? ??? 512bit, ? 64byte ??? secret key? ???? ??.
   secret: c3ByaW5nLWJvb3Qtc2VjdXJpdHktand0LXR1dG9yaWFsLWppd29vbi1zcHJpbmctYm9vdC1zZWN1cml0eS1qd3QtdHV0b3JpYWwK
