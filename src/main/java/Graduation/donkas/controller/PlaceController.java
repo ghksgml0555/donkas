@@ -1,5 +1,6 @@
 package Graduation.donkas.controller;
 
+import Graduation.donkas.dto.VerifyHostDto;
 import Graduation.donkas.dto.BookingDto.BookingDto;
 import Graduation.donkas.dto.BookingDto.BookingRequestDto;
 import Graduation.donkas.dto.PlaceDto.PlaceDto;
@@ -39,6 +40,7 @@ public class PlaceController {
     @PostMapping("/registration")
     @Operation(summary = "숙소 등록")
     public ResponseResult<?> registration(@RequestBody PlaceRequestDto placeRequestDto,@AuthenticationPrincipal UserDetails user) throws Exception {
+        if (!placeService.verifyHost(placeRequestDto.toVerifyHostDto())) return ResponseResult.body("400", "존재하지 않는 사업자입니다.");
         PlaceDto placeDto = placeRequestDto.toPlaceDto(user.getUsername());
         return ResponseResult.body(placeService.registration(placeDto));
     }

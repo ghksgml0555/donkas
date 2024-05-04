@@ -2,6 +2,7 @@ package Graduation.donkas.dto.PlaceDto;
 
 import Graduation.donkas.domain.member.Authority;
 import Graduation.donkas.domain.member.Member;
+import Graduation.donkas.dto.VerifyHostDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,19 @@ public class PlaceRequestDto {
 
     String address;
     String bookingPrice;
+    String businessNumber;
+    String hostName;
+    String businessStartDate;
+
+    public VerifyHostDto toVerifyHostDto() {
+        return new VerifyHostDto(
+            VerifyHostDto.BusinessDto.builder()
+                .b_no(businessNumber)
+                .start_dt(businessStartDate)
+                .p_nm(hostName)
+                .build()
+        );
+    }
 
     public PlaceDto toPlaceDto(String id) {
 
@@ -36,7 +50,7 @@ public class PlaceRequestDto {
                 .location("00")
                 .bookingAvailable("true")
                 .rating("0.0")
-                .businessNumber("businessNumber")
+                .businessNumber(businessNumber)
                 .bookingPrice(bookingPrice)
                 .build();
     }
