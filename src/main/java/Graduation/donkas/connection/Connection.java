@@ -215,7 +215,7 @@ public class Connection {
 
     public void createPlace(PlaceDto placeDto) throws EndorseException, SubmitException, CommitStatusException, CommitException {
         System.out.println("\n--> Submit Transaction: CreateAsset, creates new asset with ID, Color, Size, Owner and AppraisedValue arguments");
-        contract.submitTransaction("CreatePlace", placeDto.getPlaceID(), placeDto.getHostID(), placeDto.getAddress(),
+        contract.submitTransaction("CreatePlace", placeDto.getPlaceID(),placeDto.getPlaceName() ,placeDto.getImgUrl(),placeDto.getHostID(), placeDto.getAddress(),
                 placeDto.getLocation(),placeDto.getBookingAvailable(),placeDto.getBookingPrice(),placeDto.getRating(), placeDto.getBusinessNumber());
 
         System.out.println("*** Transaction committed successfully");

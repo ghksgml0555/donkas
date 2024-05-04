@@ -20,6 +20,8 @@ public class PlaceRequestDto {
 
     String address;
     String bookingPrice;
+    String placeName;
+    String imgUrl;
     String businessNumber;
     String hostName;
     String businessStartDate;
@@ -45,6 +47,8 @@ public class PlaceRequestDto {
 
         return PlaceDto.builder()
                 .placeID(uniqueId)
+                .placeName(placeName)
+                .imgUrl(imgUrl)
                 .hostID(id)
                 .address(address)
                 .location("00")

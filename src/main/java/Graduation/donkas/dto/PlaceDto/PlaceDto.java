@@ -14,6 +14,8 @@ import lombok.NoArgsConstructor;
 public class PlaceDto {
 
     String placeID;
+    String placeName;
+    String imgUrl;
     String hostID;
     String address;
     String location;
@@ -24,6 +26,8 @@ public class PlaceDto {
 
     public PlaceDto(JsonObject asset){
         this.placeID = asset.get("placeID").getAsString();
+        this.placeName = asset.get("placeName").getAsString();
+        this.imgUrl = asset.get("imgUrl").getAsString();
         this.hostID = asset.get("hostID").getAsString();
         this.address = asset.get("address").getAsString();
         this.location = asset.get("location").getAsString();
